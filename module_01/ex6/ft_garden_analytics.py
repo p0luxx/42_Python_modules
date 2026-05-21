@@ -68,16 +68,15 @@ class Flower(Plant):
         self._color = value
     def	bloom(self)  -> None:
         stats = super().get_stats()
-        print("[asking the rose to bloom]")
+        print(f"[asking the {self._name} to bloom]")
         print(f"{stats}")
         print(f" Color: {self._color}")
-        print(" Rose is blooming beautifully!")
+        print(f" {self._name} is blooming beautifully!")
     def print_stats(self) -> None:
         stats = super().get_stats()
-        print("=== Flower")
         print(f"{stats}")
         print(f" Color: {self._color}")
-        print(" Rose has not bloomed yet")
+        print(f" {self._name} has not bloomed yet")
 
 class Tree(Plant):
     def __init__(self, diameter:float, name:str, height:float, age:int) -> None:
@@ -164,20 +163,35 @@ class Seed(Flower):
         super().print_stats()
         print(f"Seeds: {self._quantity}")
 if __name__ == "__main__":
+    print("=== Garden statistics ===")
 
-    print("=== Garden Plant Types ===")
+    print("=== Check year-old")
+    print(f"Is 30 days more than a year? -> {Plant.is_greater_a_year(30)}")
+    print(f"Is 400 days more than a year? -> {Plant.is_greater_a_year(400)}")
+    print("=== Flower")
     rose = Flower("red", "Rose", 15.0, 10)
-    oak = Tree(5.0, "Oak", 200.0, 365)
-    tomato = Vegetable("April", 0, "Tomato", 5.0, 10)
-    seed = Seed(0, "yellow", "Sunflower", 80.0, 45)
-    anonimous = Plant.set_default_params()
     rose.print_stats()
+    rose._stats.show_stats()
+    rose.set_height(23.0)
+    rose._stats.grow_count += 1
     rose.bloom()
+    rose._stats.show_stats()
+    oak = Tree(5.0, "Oak", 200.0, 365)
     oak.print_stats()
+    oak._stats.show_stats()
     oak.produce_shade()
-    tomato.print_stats()
-    tomato.grow(20)
+    oak._stats.show_stats()
+    seed = Seed(0, "yellow", "Sunflower", 80.0, 45)
     seed.print_stats()
+    print("[make sunflower grow, age and bloom]")
+    seed.set_height(110.0)
+    seed.set_age(65)
+    seed._stats.grow_count += 1
+    seed._stats.age_count += 1
+    seed.set_quantity(41)
     seed.bloom()
-    anonimous.print_stats()
-
+    seed._stats.show_stats()
+    print("=== Anonymous")
+    anonimous = Plant.set_default_params()
+    print(anonimous.get_stats())
+    anonimous._stats.show_stats()
