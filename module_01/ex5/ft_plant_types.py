@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-
 class Plant:
     def __init__(self, name: str, height: float, age: int) -> None:
         self._name = ""
@@ -35,7 +34,7 @@ class Plant:
             self._age = value
 
     def get_stats(self) -> str:
-        return f"{self._name}: {self._height}cm, {self._age} days old"
+        return f"{self._name}: {round(self._height, 2)}cm, {self._age} days old"
 
 
 class Flower(Plant):
@@ -81,22 +80,22 @@ class Tree(Plant):
         stats = super().get_stats()
         print("=== Tree")
         print(f"{stats}")
-        print(f"Trunk diameter: {self._diameter}")
+        print(f"Trunk diameter: {self._diameter}cm")
 
 class Vegetable(Plant):
-    def __init__(self, season:str, n_value:float, name:str, height:float, age:int):
+    def __init__(self, season:str, n_value:int, name:str, height:float, age:int):
         super().__init__(name, height, age)
         self._season = ""
-        self._n_value = 0.0
+        self._n_value = 0
         self.set_season(season)
         self.set_n_value(n_value)
     def get_season(self) -> str:
         return self._season
-    def get_n_value(self) -> float:
+    def get_n_value(self) -> int:
         return self._n_value
     def set_season(self, value:str) -> None:
         self._season = value
-    def set_n_value(self, value:float) -> None:
+    def set_n_value(self, value:int) -> None:
         if value < 0:
             print("Error: Nutritional value can't be a negative number")
         else:
@@ -106,12 +105,13 @@ class Vegetable(Plant):
         for day in range(days):
             self._height += 0.1
             self._age += 1
-            self._n_value += 0.5
+            self._n_value += 1
         stats = super().get_stats()
         print(f"{stats}")
         print(f" Harvest season: {self._season}")
         print(f" Nutritional value: {self._n_value}")
     def print_stats(self) -> None:
+        print("=== Vegetable")
         stats = super().get_stats()
         print(f"{stats}")
         print(f" Harvest season: {self._season}")
