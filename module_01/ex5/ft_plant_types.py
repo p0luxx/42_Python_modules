@@ -79,15 +79,52 @@ class Tree(Plant):
         print(f"Tree {self._name} now produces a shade of {self._height}cm long and {self._diameter}cm wide.")
     def print_stats(self) -> None:
         stats = super().get_stats()
+        print("=== Tree")
         print(f"{stats}")
         print(f"Trunk diameter: {self._diameter}")
 
+class Vegetable(Plant):
+    def __init__(self, season:str, n_value:float, name:str, height:float, age:int):
+        super().__init__(name, height, age)
+        self._season = ""
+        self._n_value = 0.0
+        self.set_season(season)
+        self.set_n_value(n_value)
+    def get_season(self) -> str:
+        return self._season
+    def get_n_value(self) -> float:
+        return self._n_value
+    def set_season(self, value:str) -> None:
+        self._season = value
+    def set_n_value(self, value:float) -> None:
+        if value < 0:
+            print("Error: Nutritional value can't be a negative number")
+        else:
+            self._n_value = value
+    def grow(self, days:int) -> None:
+        print(f"[make {self._name} grow and age for {days} days]")
+        for day in range(days):
+            self._height += 0.1
+            self._age += 1
+            self._n_value += 0.5
+        stats = super().get_stats()
+        print(f"{stats}")
+        print(f" Harvest season: {self._season}")
+        print(f" Nutritional value: {self._n_value}")
+    def print_stats(self) -> None:
+        stats = super().get_stats()
+        print(f"{stats}")
+        print(f" Harvest season: {self._season}")
+        print(f" Nutritional value: {self._n_value}")
 if __name__ == "__main__":
 
     print("=== Garden Plant Types ===")
     rose = Flower("red", "Rose", 15.0, 10)
     oak = Tree(5.0, "Oak", 200.0, 365)
+    tomato = Vegetable("April", 0, "Tomato", 5.0, 10)
     rose.print_stats()
     rose.bloom()
     oak.print_stats()
     oak.produce_shade()
+    tomato.print_stats()
+    tomato.grow(20)
