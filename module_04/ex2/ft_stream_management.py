@@ -10,7 +10,8 @@ def create_new_file(file_name: str, content: str) -> None:
         new_file.write(content)
         new_file.close()
     except PermissionError as e:
-        print(f"[STDERR] Error opening file '{file_name}': {e}", file=sys.stderr)
+        print(f"[STDERR] Error opening file '{file_name}': {e}",
+              file=sys.stderr)
         print("Data not saved.")
 
 
@@ -36,7 +37,7 @@ def normalize_input(string: str) -> str:
             buff += string[i]
     return buff
 
-    
+
 def ft_archive_creation(file_name: str) -> None:
     try:
         file: typing.IO
@@ -60,9 +61,11 @@ def ft_archive_creation(file_name: str) -> None:
             print(f"Saving data to '{new_file_name}'", file=sys.stdout)
             create_new_file(new_file_name, transformed_data)
     except FileNotFoundError as e:
-        print(f"[STDERR] Error opening file '{sys.argv[1]}': {e}", file=sys.stderr)
+        print(f"[STDERR] Error opening file '{sys.argv[1]}': {e}",
+              file=sys.stderr)
     except PermissionError as e:
-        print(f"[STDERR] Error opening file '{sys.argv[1]}': {e}", file=sys.stderr)
+        print(f"[STDERR] Error opening file '{sys.argv[1]}': {e}",
+              file=sys.stderr)
 
 
 if __name__ == "__main__":
