@@ -93,49 +93,44 @@ class LogProcessor(DataProcessor):
 
 
 if __name__ == "__main__":
-    print("=== Code Nexus - Data Processor ===")
+    print("=== Code Nexus - Data Processor ===\n")
     print("Testing Numeric Processor...")
-
     num = 42
     text = "Hello"
-
     process0 = NumericProcessor()
-
-    print(f"Trying to validate input '{num}': {process0.validate(num)}")
-    print(f"Trying to validate input '{text}': {process0.validate(text)}")
-
-    print("Test invalid ingestion of string 'foo' without prior validation:")
+    print(f" Trying to validate input '{num}': {process0.validate(num)}")
+    print(f" Trying to validate input '{text}': {process0.validate(text)}")
+    print(" Test invalid ingestion of string 'foo' without prior validation:")
     try:
         process0.ingest("foo")
     except Exception as e:
-        print(f"Got exception: {e}")
-
+        print(f" Got exception: {e}")
     data_list = [1, 2, 3, 4, 5]
-    print(f"Processing data: {data_list}")
+    print(f" Processing data: {data_list}")
     process0.ingest(data_list)
-
-    print("Extracting 3 values...")
-    for _ in range(3):
+    print(" Extracting 3 values...")
+    for i in range(0, 3):
         rank, value = process0.output()
-        print(f"Numeric value {rank}: {value}")
-
-    process1 = TextProcessor()
-    process1.ingest(text)
-    rank, value = process1.output()
-    print(rank, value)
-
-
-
-
-    # Un único log:
-    un_log = {'log_level': 'NOTICE', 'log_message': 'Connection to server'}
-
-    # O una lista de logs:
-    varios_logs = [
+        print(f" Numeric value {rank}: {value}")
+    print("\nTesting Text Processor...")
+    texting = TextProcessor()
+    print(f" Trying to validate input '{num}': {texting.validate(num)}")
+    text_list =  ['Hello', 'Nexus', 'World']
+    texting_procesor = TextProcessor()
+    texting_procesor.ingest(text_list)
+    print(f" Processing data: {text_list}")
+    print(" Extracting 1 value...")
+    for _ in range(1):
+        rank, value = texting_procesor.output()
+        print(f" Text value {rank}: {value}")
+    example = [
     {'log_level': 'NOTICE', 'log_message': 'Connection to server'},
     {'log_level': 'ERROR', 'log_message': 'Unauthorized access!!'}]
-
-    logs = LogProcessor()
-    logs.ingest(varios_logs)
-    rank, value = logs.output()
-    print(rank, value)
+    processor_logs = LogProcessor()
+    print("\nTesting Log Processor...")
+    print(f" Trying to validate input '{text}': {processor_logs.validate(text)}")
+    print(f"Processing data: {example}")
+    processor_logs.ingest(example)
+    for _ in range(2):
+        rank, value = processor_logs.output()
+        print(f" Log entry {rank}: {value}")
