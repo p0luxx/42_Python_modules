@@ -2,7 +2,7 @@
 
 from abc import ABC, abstractmethod
 
-from ex0.base_creature import Creature
+from ex2.base_creature import Creature
 
 
 class CreatureFactory(ABC):

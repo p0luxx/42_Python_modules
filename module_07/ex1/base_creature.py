@@ -9,8 +9,7 @@ class Creature(ABC):
         self.c_type = c_type
 
     @abstractmethod
-    def attack(self) -> str:
-        ...
+    def attack(self) -> str: ...
 
     def describe(self) -> str:
-        return (f"{self.c_name} is a {self.c_type} type Creature")
+        return f"{self.c_name} is a {self.c_type} type Creature"

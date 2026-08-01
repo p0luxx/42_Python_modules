@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
-from ex1.base_creature import Creature
-from ex1.capabilities import HealCapability, TransformCapability
+from ex2.base_creature import Creature
+from ex2.capabilities import HealCapability, TransformCapability
 
 
 class Flameling(Creature):

@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
-from ex1 import HealingCreatureFactory, TransformCreatureFactory, Creature
+from ex1 import HealingCreatureFactory, TransformCreatureFactory
+from ex1.capabilities import HealCapability, TransformCapability
 
 
 def test_healing_creatures(factory: HealingCreatureFactory) -> None:
@@ -9,12 +10,15 @@ def test_healing_creatures(factory: HealingCreatureFactory) -> None:
     base = factory.create_base()
     print(base.describe())
     print(base.attack())
-    print(base.heal())
+    if isinstance(base, HealCapability):
+        print(base.heal())
+
     print(" evolved:")
     evolved = factory.create_evolved()
     print(evolved.describe())
     print(evolved.attack())
-    print(evolved.heal())
+    if isinstance(evolved, HealCapability):
+        print(evolved.heal())
 
 
 def test_transform_creatures(factory: TransformCreatureFactory) -> None:
@@ -23,16 +27,19 @@ def test_transform_creatures(factory: TransformCreatureFactory) -> None:
     base = factory.create_base()
     print(base.describe())
     print(base.attack())
-    print(base.transform())
-    print(base.attack())
-    print(base.revert())
+    if isinstance(base, TransformCapability):
+        print(base.transform())
+        print(base.attack())
+        print(base.revert())
+
     print(" evolved:")
     evolved = factory.create_evolved()
     print(evolved.describe())
     print(evolved.attack())
-    print(evolved.transform())
-    print(evolved.attack())
-    print(evolved.revert())
+    if isinstance(evolved, TransformCapability):
+        print(evolved.transform())
+        print(evolved.attack())
+        print(evolved.revert())
 
 
 if __name__ == "__main__":

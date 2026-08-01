@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from ex1.base_creature import Creature
 from ex1.base_factory import CreatureFactory
-from ex1.creatures import Sproutling, Bloomelle, Shiftling, Morphagon
+from ex1.creatures import Bloomelle, Morphagon, Shiftling, Sproutling
 
 
 class HealingCreatureFactory(CreatureFactory):
@@ -15,5 +15,6 @@ class HealingCreatureFactory(CreatureFactory):
 class TransformCreatureFactory(CreatureFactory):
     def create_base(self) -> Creature:
         return Shiftling()
+
     def create_evolved(self) -> Creature:
         return Morphagon()

@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 from ex0.base_factory import CreatureFactory
-from ex0.creatures import Flameling, Pyrodon, Aquabub, Torragon
+from ex0.creatures import Aquabub, Flameling, Pyrodon, Torragon
 
 
 class FlameFactory(CreatureFactory):
