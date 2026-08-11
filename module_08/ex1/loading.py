@@ -32,9 +32,9 @@ def main():
         print("\nTo install with Poetry:")
         print("poetry install")
         sys.exit(1)
-    import matplotlib.pyplot as plt
-    import numpy as np
-    import pandas as pd
+    import matplotlib.pyplot as plt  # type: ignore
+    import numpy as np  # type: ignore
+    import pandas as pd  # type: ignore
     print("\nAnalyzing Matrix data...")
     print("Processing 1000 data points...")
     data = np.random.randn(1000)

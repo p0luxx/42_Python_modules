@@ -1,6 +1,6 @@
 import os
 import sys
-from dotenv import load_dotenv
+from dotenv import load_dotenv  # type: ignore[import-not-found]
 
 
 def main() -> None:
@@ -33,7 +33,7 @@ def main() -> None:
         log_status = f"{log_level} (Restricted)"
     else:
         db_status = "Connected to local instance"
-        log_status = log_level
+        log_status = log_level or ""
     print("Configuration loaded:")
     print(f"Mode: {matrix_mode}")
     print(f"Database: {db_status}")

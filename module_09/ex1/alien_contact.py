@@ -1,7 +1,12 @@
 from enum import Enum
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel, Field, model_validator
+from pydantic import (  # type: ignore[import-not-found]
+    BaseModel,
+    Field,
+    model_validator
+)
+
 
 class ContactType(str, Enum):
     RADIO = "radio"
@@ -27,11 +32,16 @@ class AlienContact(BaseModel):
             raise ValueError("Contact ID need start with 'AC'")
         if self.contact_type == ContactType.PHYSYCAL and not self.is_verified:
             raise ValueError("Physical contacts need to be verified")
-        if self.contact_type == ContactType.TELEPATHIC and self.witness_count < 3:
-            raise ValueError("Telepathic contact requires at least 3 witnesses")
+        if (
+            self.contact_type == ContactType.TELEPATHIC
+            and self.witness_count < 3
+        ):
+            raise ValueError("Telepathic contact requires"
+                             " at least 3 witnesses")
         if self.signal_strength > 7.0 and not self.message_received:
             raise ValueError(
-                    "Signals with power greater than 7 must be include a recieved message"
+                    "Signals with power greater than 7 "
+                    "must be include a recieved message"
                     )
         return self
 
@@ -64,6 +74,7 @@ def main():
 
     except Exception as e:
         print(f"Error inesperado: {e}")
+
 
 if __name__ == "__main__":
     main()
