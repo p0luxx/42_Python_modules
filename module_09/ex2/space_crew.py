@@ -77,7 +77,7 @@ def main() -> None:
             mission_id="M2024_MARS",
             mission_name="Mars Colony Establishment",
             destination="Mars",
-            launch_date="2026-08-11T00:00:00",
+            launch_date=datetime.fromisoformat("2026-08-11T00:00:00"),
             duration_days=900,
             budget_millions=2500.0,
             crew=[
@@ -131,7 +131,7 @@ def main() -> None:
             mission_id="M2024_MOON",
             mission_name="Lunar Scout Mission",
             destination="Moon",
-            launch_date="2026-09-01T12:00:00",
+            launch_date=datetime.fromisoformat("2026-09-01T12:00:00"),
             duration_days=30,
             budget_millions=150.0,
             crew=[
