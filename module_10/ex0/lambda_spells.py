@@ -1,11 +1,11 @@
 artifact_sorter = lambda arti: sorted(arti, key=lambda x: x["power"], reverse=True)  # noqa
 power_filter = lambda mages, min_power: list(filter(lambda m: m["power"] >= min_power, mages))  # noqa
 spell_transformer = lambda spells: list(map(lambda s: f"* {s} *", spells))  # noqa
-mage_stats = lambda mages: {
+mage_stats = lambda mages: {  # noqa: E731
     "max_power": max(map(lambda m: m["power"], mages)),
     "min_power": min(map(lambda m: m["power"], mages)),
     "avg_power": round(sum(map(lambda m: m["power"], mages)) / len(mages), 2),
-} # noqa
+    }
 
 
 if __name__ == "__main__":

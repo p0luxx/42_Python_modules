@@ -3,6 +3,7 @@ from typing import Callable, Any
 
 def mage_counter() -> Callable[[], int]:
     count = 0
+
     def counter() -> int:
         nonlocal count
         count += 1
@@ -12,6 +13,7 @@ def mage_counter() -> Callable[[], int]:
 
 def spell_accumulator(initial_power: int) -> Callable[[int], int]:
     total_power = initial_power
+
     def accumulate(power_add: int) -> int:
         nonlocal total_power
         total_power += power_add
